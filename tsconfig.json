@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "alwaysStrict": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "lib": [
+      "es5",
+      "es6",
+      "dom"
+    ],
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "outDir": "./dist/package/",
+    "pretty": true,
+    "sourceMap": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "target": "es5",
+    "types": [
+      "node"
+    ]
+  },
+  "awesomeTypeScriptLoaderOptions": {
+    "useWebpackText": true
+  },
+  "include": [
+    "./src/package/**/*.ts"
+  ]
+}

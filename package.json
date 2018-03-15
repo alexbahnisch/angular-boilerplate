@@ -1,0 +1,67 @@
+{
+  "name": "angular-boilerplate",
+  "version": "0.0.1",
+  "description": "A boilerplate for creating typescript/angular based npm packages and webpack apps.",
+  "license": "MIT",
+  "author": "Alex Bahnisch",
+  "homepage": "https://github.com/alexbahnisch/angular-boilerplate#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexbahnisch/angular-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alexbahnisch/angular-boilerplate/issues"
+  },
+  "main": "./src/package/index.ts",
+  "private": true,
+  "keywords": [
+    "boilerplate",
+    "npm",
+    "angular",
+    "typescript",
+    "webpack"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@angular/common": "^5.2.9",
+    "@angular/compiler": "^5.2.9",
+    "@angular/core": "^5.2.9",
+    "@angular/forms": "^5.2.9",
+    "@angular/http": "^5.2.9",
+    "@angular/platform-browser": "^5.2.9",
+    "@angular/platform-browser-dynamic": "^5.2.9",
+    "@angular/router": "^5.2.9",
+    "@types/node": "^9.4.7",
+    "awesome-typescript-loader": "^4.0.1",
+    "copy-webpack-plugin": "^4.5.1",
+    "core-js": "^2.5.3",
+    "cross-env": "^5.1.4",
+    "css-loader": "^0.28.10",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "http-server": "^0.11.1",
+    "prop-types": "^15.6.1",
+    "raw-loader": "^0.5.1",
+    "rxjs": "^5.5.7",
+    "typescript": "^2.7.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.0",
+    "webpack-livereload-plugin": "^1.0.0",
+    "zone.js": "^0.8.20"
+  },
+  "peerDependencies": {},
+  "scripts": {
+    "app:build": "npm run app:clean && cross-env CONFIG=app webpack --progress -p",
+    "app:build-dev": "npm run app:clean && cross-env CONFIG=app NODE_ENV=development webpack --devtool inline-source-map --progress --watch",
+    "app:build-docker": "cross-env CONFIG=app webpack -p",
+    "app:clean": "rm !(*.gitkeep) -rf ./dist/app/*",
+    "app:server": "http-server ./dist/app/ -p 8081",
+    "app:server-dev": "cross-env CONFIG=app webpack-dev-server --devtool inline-source-map --progress",
+    "clean": "npm run app:clean && npm run package:clean",
+    "package": "npm run package:compile && npm run package:bundle && npm run package:artifact",
+    "package:artifact": "node ./scripts/pre-package.js && cd ./dist/artifacts/ && npm pack ../package",
+    "package:bundle": "cross-env CONFIG=package MIN=true webpack && cross-env CONFIG=package webpack && rm ./dist/package/zzz.*",
+    "package:clean": "rm !(*.gitkeep) -rf ./dist/package/*",
+    "package:compile": "npm run package:clean && tsc -d"
+  }
+}
