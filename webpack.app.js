@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 module.exports = {
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   entry: path.resolve(__dirname, "./src/app/main.ts"),
   output: {
     path: path.resolve(__dirname, "./dist/app/"),
@@ -46,16 +47,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        loader: "awesome-typescript-loader"
-      },
-      {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract("css-loader")
       },
       {
         test: /\.html/,
         loader: "raw-loader"
+      },
+      {
+        test: /\.ts$/,
+        loader: "awesome-typescript-loader"
       }
     ]
   },

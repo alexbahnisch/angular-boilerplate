@@ -6,6 +6,7 @@ const webpack = require("webpack");
 const {ContextReplacementPlugin} = require("webpack");
 
 
+// noinspection JSCheckFunctionSignatures
 let packageJson = JSON.parse(fs.readFileSync("./package.json"));
 let name = `${packageJson.name}-${packageJson.version}${process.env.MIN ? ".min" : ""}`;
 let plugins = [
@@ -20,10 +21,11 @@ if (process.env.MIN) {
 }
 
 module.exports = {
-  entry: path.resolve(__dirname, `./src/package/index.ts`),
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
+  entry: path.resolve(__dirname, "./src/package/index.ts"),
   output: {
     path: path.resolve(__dirname, "./dist/package/"),
-    filename: `zzz.js`
+    filename: "zzz.js"
   },
   devtool: process.env.MIN ? "source-map" : undefined,
   resolve: {

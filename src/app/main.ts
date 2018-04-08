@@ -5,7 +5,7 @@ import {AppModule} from "./views/app.module"
 
 
 platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((error) => {
-    console.log(error)
-  });
+.bootstrapModule(AppModule)
+.catch((error) => {
+  console.log(error)
+});
