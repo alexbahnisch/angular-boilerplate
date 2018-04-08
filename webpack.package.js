@@ -3,14 +3,15 @@ const fs = require("fs");
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const webpack = require("webpack");
-const {ContextReplacementPlugin} = require("webpack");
 
 
 // noinspection JSCheckFunctionSignatures
 let packageJson = JSON.parse(fs.readFileSync("./package.json"));
 let name = `${packageJson.name}-${packageJson.version}${process.env.MIN ? ".min" : ""}`;
+
+// noinspection JSUnresolvedFunction
 let plugins = [
-  new ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, path.resolve(__dirname, "./src")),
+  new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, path.resolve(__dirname, "./src")),
   new ExtractTextPlugin(`${name}.css`)
 ];
 

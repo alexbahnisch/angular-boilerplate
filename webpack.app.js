@@ -4,11 +4,12 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const LiveReloadPlugin = require("webpack-livereload-plugin");
-const {ContextReplacementPlugin} = require("webpack");
+const webpack = require("webpack");
 
 
+// noinspection JSUnresolvedFunction
 let plugins = [
-  new ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, path.resolve(__dirname, "./src")),
+  new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)@angular/, path.resolve(__dirname, "./src")),
   new CopyWebpackPlugin([
     {from: "./src/assets/css", to: "css"},
     {from: "./src/assets/fonts", to: "fonts"},
@@ -29,10 +30,14 @@ if (process.env.NODE_ENV !== "production") {
 
 module.exports = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
-  entry: path.resolve(__dirname, "./src/app/main.ts"),
+  entry: {
+    "polyfills": path.resolve(__dirname, "./src/app/polyfills.ts"),
+    "vendor": path.resolve(__dirname, "./src/app/vendor.ts"),
+    "app": path.resolve(__dirname, "./src/app/main.ts"),
+  },
   output: {
     path: path.resolve(__dirname, "./dist/app/"),
-    filename: "bundle.js"
+    filename: "[name].bundle.js"
   },
   devServer: {
     contentBase: path.resolve(__dirname, "./dist/app/"),
