@@ -6,12 +6,12 @@ const webpack = require("webpack");
 
 
 // noinspection JSCheckFunctionSignatures
-let packageJson = JSON.parse(fs.readFileSync("./package.json"));
+let packageJson = JSON.parse(fs.readFileSync("../package.json"));
 let name = `${packageJson.name}-${packageJson.version}${process.env.MIN ? ".min" : ""}`;
 
 // noinspection JSUnresolvedFunction
 let plugins = [
-  new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, path.resolve(__dirname, "./src")),
+  new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, path.resolve(__dirname, "../src")),
   new ExtractTextPlugin(`${name}.css`)
 ];
 
@@ -23,9 +23,9 @@ if (process.env.MIN) {
 
 module.exports = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
-  entry: path.resolve(__dirname, "./src/package/index.ts"),
+  entry: path.resolve(__dirname, "../src/package/index.ts"),
   output: {
-    path: path.resolve(__dirname, "./dist/package/"),
+    path: path.resolve(__dirname, "../dist/package/"),
     filename: "zzz.js"
   },
   devtool: process.env.MIN ? "source-map" : undefined,
