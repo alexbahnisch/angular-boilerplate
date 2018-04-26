@@ -11,14 +11,14 @@ const webpack = require("webpack");
 let plugins = [
   new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, path.resolve(__dirname, "../src")),
   new CopyWebpackPlugin([
-    {from: "../src/assets/css", to: "css"},
-    {from: "../src/assets/fonts", to: "fonts"},
-    {from: "../src/assets/img", to: "img"},
-    {from: "../src/assets/js", to: "js"}
+    {from: "./src/assets/css", to: "css"},
+    {from: "./src/assets/fonts", to: "fonts"},
+    {from: "./src/assets/img", to: "img"},
+    {from: "./src/assets/js", to: "js"}
   ]),
   new ExtractTextPlugin("styles.css"),
   new HtmlWebpackPlugin({
-    template: "../src/assets/index.html"
+    template: "./src/assets/index.html"
   })
 ];
 

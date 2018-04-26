@@ -15,9 +15,7 @@ let plugins = [
   new ExtractTextPlugin(`${name}.css`)
 ];
 
-if (process.env.MIN) {
-  plugins.push(new webpack.optimize.UglifyJsPlugin())
-} else {
+if (!process.env.MIN) {
   plugins.push(new ExtractTextPlugin("styles.css"))
 }
 
