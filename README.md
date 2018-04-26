@@ -1,6 +1,6 @@
 # angular-boilerplate
 
-A boilerplate for creating typescript/react based npm packages and webpack apps.
+A boilerplate for creating typescript/angular based npm packages and webpack apps.
 
 ### Getting started
 
