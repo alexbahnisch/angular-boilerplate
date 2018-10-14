@@ -12,15 +12,14 @@
   "bugs": {
     "url": "https://github.com/alexbahnisch/angular-boilerplate/issues"
   },
-  "main": "./src/package/index.ts",
-  "private": true,
   "keywords": [
     "boilerplate",
-    "npm",
     "angular",
     "typescript",
     "webpack"
   ],
+  "main": "./src/package/index.ts",
+  "private": true,
   "dependencies": {},
   "devDependencies": {
     "@angular/common": "^6.1.10",
